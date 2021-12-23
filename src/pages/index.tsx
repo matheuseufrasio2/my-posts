@@ -1,7 +1,35 @@
-import type { NextPage } from "next";
+import type { GetStaticProps } from "next";
+import api from "services/api";
+import { Post } from "types/Post";
 
-const Home: NextPage = () => {
-  return <h1>Hello World</h1>;
+interface IHomeProps {
+  posts: Post[];
+}
+
+export default function Home({ posts }: IHomeProps) {
+  return (
+    <div>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+            <br />
+            <br />
+            <br />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await api.get("posts");
+
+  return {
+    props: {
+      posts: data,
+    },
+  };
 };
-
-export default Home;
