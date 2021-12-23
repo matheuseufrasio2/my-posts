@@ -1,5 +1,7 @@
+import { PostCard } from "components/PostCard";
 import type { GetStaticProps } from "next";
 import api from "services/api";
+import { Container, Content } from "styles/pages/home";
 import { Post } from "types/Post";
 
 interface IHomeProps {
@@ -8,19 +10,20 @@ interface IHomeProps {
 
 export default function Home({ posts }: IHomeProps) {
   return (
-    <div>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-            <br />
-            <br />
-            <br />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+      <Content>
+        <ul>
+          {posts.map((post) => (
+            <PostCard
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              body={post.body}
+            />
+          ))}
+        </ul>
+      </Content>
+    </Container>
   );
 }
 

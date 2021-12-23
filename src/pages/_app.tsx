@@ -1,22 +1,23 @@
-import type { AppProps } from "next/app";
-import Head from "next/head";
-import { GlobalStyles } from "styles/global";
+import NextNProgress from "nextjs-progressbar";
 
-function MyApp({ Component, pageProps }: AppProps) {
+import dynamic from "next/dynamic";
+import type { AppProps } from "next/app";
+
+const LayoutWithoutSSR = dynamic(() => import("../components/Layout"), {
+  ssr: false,
+});
+
+function MyApp(props: AppProps) {
   return (
     <>
-      <Head>
-        <title>Boilerplate Nextjs</title>
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
+      <NextNProgress
+        color="#f231a5"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+      />
 
-        <meta
-          name="description"
-          content="Um boilerplate simples para se iniciar projetos com o create-next-app"
-        />
-      </Head>
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <LayoutWithoutSSR {...props} />
     </>
   );
 }
