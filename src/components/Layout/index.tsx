@@ -1,4 +1,3 @@
-import Header from "components/Header";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { DefaultTheme, ThemeProvider } from "styled-components";
@@ -7,7 +6,8 @@ import usePersistedState from "utils/usePersistedState";
 
 import light from "../../styles/themes/light";
 import dark from "../../styles/themes/dark";
-import Footer from "components/Footer";
+import { Footer } from "components/Footer";
+import { Header } from "components/Header";
 
 export default function Layout({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", light);
@@ -23,10 +23,7 @@ export default function Layout({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
 
-        <meta
-          name="description"
-          content="Um boilerplate simples para se iniciar projetos com o create-next-app"
-        />
+        <meta name="description" content="An example for blog" />
       </Head>
       <GlobalStyles />
       <Header toggleTheme={toggleTheme} />

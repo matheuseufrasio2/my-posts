@@ -17,7 +17,11 @@ export const Content = styled.div`
   color: #fff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 30px;
   max-width: 1140px;
+
+  svg {
+    margin: 0 8px;
+  }
 `;

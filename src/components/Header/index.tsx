@@ -1,21 +1,24 @@
 import React, { useContext } from "react";
+import Link from "next/link";
 import Switch from "react-switch";
 import { ThemeContext } from "styled-components";
 import { shade } from "polished";
 
 import { Container, Content } from "./styles";
 
-interface Props {
+interface HeaderProps {
   toggleTheme(): void;
 }
 
-const Header: React.FC<Props> = ({ toggleTheme }) => {
+export function Header({ toggleTheme }: HeaderProps) {
   const { colors, title } = useContext(ThemeContext);
 
   return (
     <Container>
       <Content>
-        My Posts
+        <Link href="/">
+          <a>My Posts</a>
+        </Link>
         <Switch
           onChange={toggleTheme}
           checked={title === "dark"}
@@ -30,6 +33,4 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
       </Content>
     </Container>
   );
-};
-
-export default Header;
+}
