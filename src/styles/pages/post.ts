@@ -53,6 +53,11 @@ export const Content = styled.div`
     }
   }
 
+  > h1 {
+    margin-top: auto;
+    margin-bottom: 20px;
+  }
+
   article {
     > h2 {
       margin: 3rem 0;
@@ -69,7 +74,6 @@ export const Content = styled.div`
 `;
 
 export const Suggestions = styled.ul`
-  margin-top: auto;
   list-style: none;
 
   display: flex;

@@ -37,8 +37,9 @@ export default function Post({ post, postSuggestions }: IPostsProps) {
           <h2>{post.title}</h2>
           <p>{post.body}</p>
         </motion.article>
+        <h1>Read more:</h1>
         <Suggestions
-          as={motion.li}
+          as={motion.ul}
           animate={{
             y: [50, 0],
             opacity: [0, 1],
@@ -86,18 +87,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const post = data.find((post: PostType) => post.id === Number(slug));
 
-  const indexOfSuggestions = [];
-  while (indexOfSuggestions.length < 4) {
-    const r = Math.floor(Math.random() * 100) + 1;
-    if (indexOfSuggestions.indexOf(r) === -1) indexOfSuggestions.push(r);
-  }
+  const postSuggestions: PostType[] = [];
 
-  const postSuggestions = [
-    data[indexOfSuggestions[0]],
-    data[indexOfSuggestions[1]],
-    data[indexOfSuggestions[2]],
-    data[indexOfSuggestions[3]],
-  ];
+  for (let i = 0; i < 5; i++) {
+    if (data[i].id !== Number(slug)) {
+      postSuggestions.push(data[i]);
+    }
+  }
 
   return {
     props: {
