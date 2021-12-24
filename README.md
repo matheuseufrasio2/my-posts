@@ -1,34 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="./assets/logo_semfundo.png" width="140px" />
+</p>
 
-## Getting Started
+<h1 align="center">My Posts</h1>
+<p align="center">A place where you can find posts about anything you want.</p>
 
-First, run the development server:
+<h3 align="center">
+  <a href="https://www.npmjs.com/" target="_blank">
+    <img alt="Build" src="https://img.shields.io/badge/npm-8.1.0-blue" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/matheuseufra" target="_blank">
+    <img alt="Twitter: matheuseufra" src="https://img.shields.io/twitter/follow/matheuseufra.svg?style=social" />
+  </a>
+</h3>
 
-```bash
-npm run dev
-# or
-yarn dev
+<br />
+
+## Answering questions
+
+1. Describe possible performance optimizations you could make to your
+code itself.
+```sh
+Maybe would be better to the performance using a global state management, because when the user enters in the page of post, I had to do other request to the API and bring all the posts. If I have more time this would be the next thing I would.
+```
+2. What could you have improved?
+```sh
+Using more SEO, because the project is a blog so it need more SEO, and I would have implementd tests in this app using jest and @react-test-library.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Running locally
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Clone de repository, open its folder and install dependencies with:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```sh
+yarn
+```
 
-## Learn More
+Run it using:
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+yarn start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## See the application in production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<a target="_blank" href="https://my-posts-tau.vercel.app/">My Posts - Published on Vercel</a>
 
-## Deploy on Vercel
+## Preview
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sample preview running the app:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Preview](.github/home_dark.png)
+![Preview](.github/home_light.png)
+![Preview](.github/post_dark.png)
+![Preview](.github/post_light.png)
+
+## Usage & settings
+
+After enter for the first time you will have access to Home page, which is where all the posts are. And by clicking on any post you can see it and the app will make 4 suggestions for others posts to  read.
+
+### What I use
+
+<ul>
+  <li>Nextjs</li>
+  <li>Typescript</li>
+  <li>Styled Components</li>
+  <li>Hooks</li>
+  <li>Axios</li>
+  <li>Polished</li>
+  <li>React Icons</li>
+  <li>React Switch</li>
+</ul>
+
+## Author
+
+👤 **Matheus Eufrásio**
+
+- Twitter: [@matheuseufra](https://twitter.com/matheuseufra)
+- Github: [@matheuseufrasio2](https://github.com/matheuseufrasio2)
+- LinkedIn: [@matheusveufrasio](https://www.linkedin.com/in/matheusveufrasio/)
