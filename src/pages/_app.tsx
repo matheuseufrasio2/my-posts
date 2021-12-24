@@ -15,6 +15,7 @@ function MyApp(props: AppProps) {
         startPosition={0.3}
         stopDelayMs={200}
         height={3}
+        options={{ showSpinner: false }}
       />
 
       <LayoutWithoutSSR {...props} />

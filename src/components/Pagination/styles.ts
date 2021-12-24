@@ -9,13 +9,22 @@ export const Container = styled.ul`
   background-color: ${({ theme }) => theme.colors.background};
 
   height: 60px;
-
-  /* background-color: #e4e4e4; */
-  margin-top: auto;
+  width: 100%;
+  max-width: 770px;
 
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  color: ${({ theme }) => theme.colors.secundary};
+
+  @media (max-width: 900px) {
+    padding: 0 38px;
+  }
+
+  > p {
+    font-size: 2rem;
+    margin: 0 10px;
+  }
 
   > li {
     width: 30px;

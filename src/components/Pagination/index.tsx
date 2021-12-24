@@ -16,7 +16,17 @@ export function Pagination({
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
+    if (
+      i === 1 ||
+      i === currentPage ||
+      i === totalPosts / postsPerPage ||
+      i === currentPage + 1 ||
+      i === currentPage + 2 ||
+      i === currentPage - 1 ||
+      i === currentPage - 2
+    ) {
+      pageNumbers.push(i);
+    }
   }
 
   return (
@@ -29,6 +39,24 @@ export function Pagination({
                 {number}
               </a>
             </li>
+          );
+        } else if (number === currentPage + 2 && currentPage !== 23) {
+          return (
+            <>
+              <li key={number}>
+                <a onClick={() => paginate(number)}>{number}</a>
+              </li>
+              <p>&raquo;</p>
+            </>
+          );
+        } else if (number === currentPage - 2 && currentPage !== 3) {
+          return (
+            <>
+              <p>&laquo;</p>
+              <li key={number}>
+                <a onClick={() => paginate(number)}>{number}</a>
+              </li>
+            </>
           );
         } else {
           return (

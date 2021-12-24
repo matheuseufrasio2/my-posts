@@ -13,7 +13,7 @@ interface IHomeProps {
 
 export default function Home({ posts }: IHomeProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(4);
 
   const indexLastPost = currentPage * postsPerPage;
   const indexFirstPost = indexLastPost - postsPerPage;

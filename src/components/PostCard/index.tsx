@@ -10,10 +10,20 @@ interface PostCardProps {
 
 export function PostCard({ id, title }: PostCardProps) {
   return (
-    <Container as={motion.li} whileHover={{ scale: 1.01 }}>
+    <Container
+      as={motion.li}
+      // whileHover={{ scale: 1.01 }}
+      // initial={false}
+      animate={{
+        x: [-50, 0],
+        opacity: [0, 1],
+      }}
+      transition={{ ease: "easeOut", duration: 1 }}
+    >
       <Link href={`/posts/${id}`}>
         <a>
           <h1>{title}</h1>
+          <p>Post number: {id}</p>
         </a>
       </Link>
     </Container>
