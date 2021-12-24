@@ -12,8 +12,6 @@ export function PostCard({ id, title }: PostCardProps) {
   return (
     <Container
       as={motion.li}
-      // whileHover={{ scale: 1.01 }}
-      // initial={false}
       animate={{
         x: [-50, 0],
         opacity: [0, 1],

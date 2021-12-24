@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
 import { ParsedUrlQuery } from "querystring";
 import api from "services/api";
-import { Container, Content } from "styles/pages/post";
+import { Container, Content, Suggestions } from "styles/pages/post";
 import { Post as PostType } from "types/Post";
 import { motion } from "framer-motion";
 
@@ -13,9 +13,10 @@ interface IParams extends ParsedUrlQuery {
 
 interface IPostsProps {
   post: PostType;
+  postSuggestions: PostType[];
 }
 
-export default function Post({ post }: IPostsProps) {
+export default function Post({ post, postSuggestions }: IPostsProps) {
   return (
     <Container>
       <Content>
@@ -36,6 +37,26 @@ export default function Post({ post }: IPostsProps) {
           <h2>{post.title}</h2>
           <p>{post.body}</p>
         </motion.article>
+        <Suggestions
+          as={motion.li}
+          animate={{
+            y: [50, 0],
+            opacity: [0, 1],
+          }}
+          transition={{ ease: "easeOut", duration: 1 }}
+        >
+          {postSuggestions &&
+            postSuggestions.map((post) => (
+              <li key={post.id}>
+                <Link href={`/posts/${post.id}`}>
+                  <a>
+                    <h2>{post.title}</h2>
+                    <p>Post number: {post.id}</p>
+                  </a>
+                </Link>
+              </li>
+            ))}
+        </Suggestions>
       </Content>
     </Container>
   );
@@ -65,9 +86,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const post = data.find((post: PostType) => post.id === Number(slug));
 
+  const indexOfSuggestions = [];
+  while (indexOfSuggestions.length < 4) {
+    const r = Math.floor(Math.random() * 100) + 1;
+    if (indexOfSuggestions.indexOf(r) === -1) indexOfSuggestions.push(r);
+  }
+
+  const postSuggestions = [
+    data[indexOfSuggestions[0]],
+    data[indexOfSuggestions[1]],
+    data[indexOfSuggestions[2]],
+    data[indexOfSuggestions[3]],
+  ];
+
   return {
     props: {
       post,
+      postSuggestions,
     },
   };
 };

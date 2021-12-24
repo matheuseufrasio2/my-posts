@@ -57,3 +57,43 @@ export const Content = styled.div`
     }
   }
 `;
+
+export const Suggestions = styled.ul`
+  margin-top: auto;
+  list-style: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  > li {
+    background-color: ${({ theme }) => theme.colors.primary};
+    width: 23%;
+    height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    > a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      transition: all 0.2s;
+
+      > h2 {
+        text-align: center;
+      }
+
+      &:hover {
+        filter: brightness(0.1);
+      }
+    }
+  }
+`;
