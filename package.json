@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "framer-motion": "^5.5.5",
     "next": "11.1.2",
     "nextjs-progressbar": "^0.0.13",
     "polished": "^4.1.3",

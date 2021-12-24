@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 import { Container } from "./styles";
@@ -5,16 +6,14 @@ import { Container } from "./styles";
 interface PostCardProps {
   id: number;
   title: string;
-  body: string;
 }
 
-export function PostCard({ id, title, body }: PostCardProps) {
+export function PostCard({ id, title }: PostCardProps) {
   return (
-    <Container>
+    <Container as={motion.li} whileHover={{ scale: 1.01 }}>
       <Link href={`/posts/${id}`}>
         <a>
           <h1>{title}</h1>
-          <p>{body}</p>
         </a>
       </Link>
     </Container>
