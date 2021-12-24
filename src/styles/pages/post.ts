@@ -22,6 +22,16 @@ export const Content = styled.div`
 
   padding: 30px 30px;
 
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.colors.primary};
+  }
+
   > div {
     width: 100%;
 
@@ -66,6 +76,10 @@ export const Suggestions = styled.ul`
   align-items: center;
   justify-content: space-around;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
   > li {
     background-color: ${({ theme }) => theme.colors.primary};
     width: 23%;
@@ -76,6 +90,15 @@ export const Suggestions = styled.ul`
     justify-content: center;
 
     border-radius: 5px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 100px;
+
+      & + li {
+        margin-top: 8px;
+      }
+    }
 
     > a {
       width: 100%;
