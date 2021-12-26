@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const postSuggestions: PostType[] = [];
 
   for (let i = 0; i < 5; i++) {
-    if (data[i].id !== Number(slug)) {
+    if (data[i].id !== Number(slug) && postSuggestions.length < 4) {
       postSuggestions.push(data[i]);
     }
   }
