@@ -13,21 +13,52 @@ interface IHomeProps {
 
 export default function Home({ posts }: IHomeProps) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [userId, setUserId] = useState(0);
   const [postsPerPage] = useState(4);
 
   const indexLastPost = currentPage * postsPerPage;
   const indexFirstPost = indexLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexFirstPost, indexLastPost);
+
+  const currentPosts = () => {
+    let currentPosts = posts;
+    if (userId) {
+      currentPosts = currentPosts.filter((post) => post.userId === userId);
+    }
+    return {
+      slicedPosts: currentPosts.slice(indexFirstPost, indexLastPost),
+      currentPosts,
+    };
+  };
 
   function paginate(pageNumber: number) {
     setCurrentPage(pageNumber);
   }
 
+  const postsUserId = posts.reduce((acc: number[], next) => {
+    if (!acc.includes(next.userId)) {
+      acc.push(next.userId);
+    }
+
+    return acc;
+  }, []);
+
   return (
     <Container>
+      <select
+        onChange={(event) => setUserId(Number(event.target.value))}
+        name="userId"
+        id="userId"
+      >
+        <option value="0"></option>
+        {postsUserId.map((postUserId) => (
+          <option key={postUserId} value={postUserId}>
+            {postUserId}
+          </option>
+        ))}
+      </select>
       <Content>
         <ul>
-          {currentPosts.map((post) => (
+          {currentPosts().slicedPosts.map((post) => (
             <PostCard key={post.id} id={post.id} title={post.title} />
           ))}
         </ul>
@@ -36,7 +67,7 @@ export default function Home({ posts }: IHomeProps) {
         currentPage={currentPage}
         paginate={paginate}
         postsPerPage={postsPerPage}
-        totalPosts={posts.length}
+        totalPosts={currentPosts().currentPosts.length}
       />
     </Container>
   );
