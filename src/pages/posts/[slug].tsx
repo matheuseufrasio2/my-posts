@@ -89,11 +89,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const postSuggestions: PostType[] = [];
 
-  for (let i = 0; i < 5; i++) {
-    if (data[i].id !== Number(slug) && postSuggestions.length < 4) {
-      postSuggestions.push(data[i]);
+  const indexRandom: number[] = [];
+
+  while (indexRandom.length !== 4) {
+    const random = Math.floor(Math.random() * (data.length - 0 + 1) + 0);
+    if (!indexRandom.includes(random)) {
+      indexRandom.push(random);
     }
   }
+  postSuggestions.push(data[indexRandom[0]]);
+  postSuggestions.push(data[indexRandom[1]]);
+  postSuggestions.push(data[indexRandom[2]]);
+  postSuggestions.push(data[indexRandom[3]]);
 
   return {
     props: {
