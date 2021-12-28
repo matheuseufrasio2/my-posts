@@ -24,6 +24,7 @@ export const Container = styled.ul`
   > p {
     font-size: 2rem;
     margin: 0 10px;
+    color: #0071bc;
   }
 
   > li {

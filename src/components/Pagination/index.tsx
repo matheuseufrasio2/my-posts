@@ -1,3 +1,4 @@
+import React from "react";
 import { Container } from "./styles";
 
 interface PaginationProps {
@@ -14,12 +15,13 @@ export function Pagination({
   paginate,
 }: PaginationProps) {
   const pageNumbers = [];
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= totalPages; i++) {
     if (
       i === 1 ||
       i === currentPage ||
-      i === totalPosts / postsPerPage ||
+      i === totalPages ||
       i === currentPage + 1 ||
       i === currentPage + 2 ||
       i === currentPage - 1 ||
@@ -40,29 +42,35 @@ export function Pagination({
               </a>
             </li>
           );
-        } else if (number === currentPage + 2 && currentPage !== 23) {
+        } else if (
+          number === currentPage + 2 &&
+          currentPage !== totalPages - 2 &&
+          totalPages !== 3
+        ) {
           return (
-            <>
-              <li key={number}>
+            <React.Fragment key={number}>
+              <li>
                 <a onClick={() => paginate(number)}>{number}</a>
               </li>
               <p>&raquo;</p>
-            </>
+            </React.Fragment>
           );
         } else if (number === currentPage - 2 && currentPage !== 3) {
           return (
-            <>
+            <React.Fragment key={number}>
               <p>&laquo;</p>
-              <li key={number}>
+              <li>
                 <a onClick={() => paginate(number)}>{number}</a>
               </li>
-            </>
+            </React.Fragment>
           );
         } else {
           return (
-            <li key={number}>
-              <a onClick={() => paginate(number)}>{number}</a>
-            </li>
+            <React.Fragment key={number}>
+              <li>
+                <a onClick={() => paginate(number)}>{number}</a>
+              </li>
+            </React.Fragment>
           );
         }
       })}

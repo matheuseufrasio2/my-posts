@@ -8,13 +8,35 @@ export const Container = styled.div`
   align-items: center;
 
   position: relative;
+
+  .container-select {
+    height: 60px;
+
+    width: 100%;
+    max-width: 770px;
+
+    @media (max-width: 1000px) {
+      padding: 0 38px;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    > select {
+      width: 20%;
+      height: 25px;
+      border: 1px solid #0071bc;
+      border-radius: 5px;
+    }
+  }
 `;
 
 export const Content = styled.div`
   width: 100%;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 240px);
   /* max-width: 1140px; */
-  padding: 30px 30px 0;
+  padding: 0 30px;
 
   display: flex;
   flex-direction: column;
