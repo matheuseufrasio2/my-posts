@@ -1,4 +1,5 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
 import { ParsedUrlQuery } from "querystring";
@@ -17,6 +18,12 @@ interface IPostsProps {
 }
 
 export default function Post({ post, postSuggestions }: IPostsProps) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <Container>
       <Content>
@@ -64,20 +71,16 @@ export default function Post({ post, postSuggestions }: IPostsProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await api.get("posts");
-  const posts = response.data;
-
-  const paths = posts.map((post: PostType) => {
-    return {
-      params: {
-        slug: String(post.id),
-      },
-    };
-  });
+  const paths = [
+    { params: { slug: "1" } },
+    { params: { slug: "2" } },
+    { params: { slug: "3" } },
+    { params: { slug: "4" } },
+  ];
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -92,7 +95,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const indexRandom: number[] = [];
 
   while (indexRandom.length !== 4) {
-    const random = Math.floor(Math.random() * (data.length - 0 + 1) + 0);
+    const random = Math.floor(Math.random() * data.length);
     if (!indexRandom.includes(random)) {
       indexRandom.push(random);
     }
@@ -105,7 +108,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       post,
-      postSuggestions,
+      postSuggestions: postSuggestions || null,
     },
   };
 };
